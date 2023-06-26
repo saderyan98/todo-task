@@ -3,7 +3,11 @@ import AddTodo from "./pages/AddTodo"
 import Home from "./pages/Home"
 import EditTodo from "./pages/EditTodo"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { useState } from 'react'
+
 const App = () => {
+  const [list, setList] = useState()
+
   return (
     <div>
       <BrowserRouter>
@@ -12,16 +16,16 @@ const App = () => {
         <Routes>
           <Route
             path='/'
-            element={<Home />}
+            element={<Home list={list} setList={setList}/>}
           />
           <Route
-            path='/'
-            element={<AddTodo />}
+            path='add/:id'
+            element={<AddTodo list={list} setList={setList}/>}
           />
           <Route
             // dynamic :id to create custom route
-            path='/'
-            element={<EditTodo />}
+            path='edit/:id'
+            element={<EditTodo list={list} setList={setList}/>}
           />
         </Routes>
 

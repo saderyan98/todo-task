@@ -6,7 +6,10 @@ const Home = () => {
     const [todos, setTodos] = useState([])
 
 
-    const deleteHandler = async (todo) => {
+    const deleteHandler = async (id) => {
+        let newArr = [...todos];
+        newArr = newArr.filter(item => item.id !== id);
+        setTodos(newArr);
       
     }
     useEffect(() => {
@@ -23,7 +26,7 @@ const Home = () => {
         <div>
             <>
                 {
-                    todos ? todos.map((todo) => <Card key={todo._id} deleteHandler={deleteHandler} todo={todo}/>)
+                    todos ? todos.map((todo) => <Card key={todo.id} deleteHandler={deleteHandler} todo={todo}/>)
                         : <p>loading...</p>
                 }
             </>
